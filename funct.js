@@ -184,7 +184,7 @@ function iniciarReloj(contenedor, letras) {
         return;
     clearInterval(cronometro);
     
-    tiempoRestante = 20;
+    tiempoRestante = 15;
     visualReloj.innerText = tiempoRestante;
 
     cronometro = setInterval(() => {
