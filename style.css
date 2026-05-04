@@ -207,6 +207,7 @@ body::before {
     border-radius: 15px;
     overflow-x: hidden; /* ¡Clave! Bloquea la expansión lateral del azul */
     overflow-y: auto;   /* Permite scroll hacia abajo si el contenido crece */
+    min-height: 100%;
 }
 #Turno{
     display: flex;

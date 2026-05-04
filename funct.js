@@ -18,7 +18,7 @@ const clock = new Audio('Sounds/clock.wav');
 const Error = new Audio('Sounds/Error.mp3');
 //Reloj
 const visualReloj = document.querySelector('#info-juego span');
-let tiempoRestante = 20;
+let tiempoRestante = 15;
 let cronometro; // Aquí guardaremos el intervalo
 let juegoIniciado = true; // Para que el reloj solo empiece con la primera palabra
 
