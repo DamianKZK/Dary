@@ -35,12 +35,16 @@ const lobbyDiv = document.querySelector('#Lobby');
 const juegoDiv = document.querySelector('#Juego-completo');
 
 //Globales
-let maximoLetras = 30;
+let maximoLetras = 35;
 let letras1 =[];
 let letras2 =[];
 let jugadores = [];
 let JugadorObjeto=[];
-let tematicas = ["Lugares a los que hemos ido", "Palabras de Mari", "Pelicula que vimos juntos", "Persona importante", "Libro", "Canción de tu Playlist >:(", "Celebrity crush de Mari", "Cosas de Damian que enamoraron a Mari"];
+let tematicas = ["Lugares a los que hemos ido", "Palabras de Mari",
+                "Pelicula que vimos juntos", "Persona importante", "Libro", 
+                "Canción de tu Playlist >:(", "Celebrity crush de Mari", "Cosas de Damian que enamoraron a Mari",
+                "Apodos de Beto", "Animal infravalorado", "Animal sobrevalorado",
+                "Animal acuático", "Marca de chocolates", "Escuadería de la F1", "País", "Mes del año", "Dia del mes", "Año"];
 let JugadorActual ="";
 let juegoActivo =true;
 let ContTem = 0;
