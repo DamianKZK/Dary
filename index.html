@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Dary</title>
+</head>
+<body>
+    <!-- Pantalla de Bienvenida -->
+    <div id="Pantalla-Inicio">
+        <div class="contenido-inicio">
+            <h1 class="titulo-animado">¡Bienvenida a Dary!</h1>
+            <p class="instruccion-inicio">Haz clic en cualquier parte para comenzar</p>
+        </div>
+    </div>
+    <div id ="Lobby"> 
+        <p id="instruccion-lobby">Introduce el nombre del Jugador 1:</p>
+        <div id ="InputB">
+            <input type="text" id="input-jugadores" placeholder="Nombre del jugador...">
+            <button id="registrar">Registrar</button>
+            </div>
+        <ul id="lista-nombres"></ul> 
+        <button id="terminar-registro" style="display:none;">¡Todos listos!</button>
+        
+        <!--<p id="Int-tem">Introduce las tematicas</p>
+        <input type="text" id="InputTems" placeholder="Escribe aqui...">
+        <button id="enviar-tematicas">Añadir</button>-->
+        
+
+        </div>
+
+    <div id="Juego-completo" class ="oculto">
+        <div id="Barra-superior">
+            <button id ="Salir">  Salir </button>
+            </div>
+
+        <div id="Caja-sup">
+            <div id="Tematica">
+                <p>Temática: <strong id ="Tem"> </strong></p>
+                </div>
+            <div id="info-juego">
+                <p>Modo: <strong>Palabra más corta</strong></p>
+                <p>Tiempo restante: <strong><span>20</span></strong> segundos</p>
+                </div>
+        </div>
+        <div id ="juego">
+            <h2 id ="Turno">Turno de: </h2>
+            <div id ="palabra1">
+                <p><strong id ="Jug1">Tu palabra:</strong></p>
+                <p id ="conteo1">0</p>
+            </div>
+            <div id="Palabras">
+
+            </div>
+            <div id ="palabra2">
+                <p><strong id =Jug2>Palabra del rival:</strong></p>
+                <p id ="conteo2">0</p>
+            </div>
+            <div id ="Palabras1">
+
+            </div>
+
+            <div id="pantalla-juego">
+                <label for="palabra-usuario">Escribe tu palabra: </label>
+                <input type="text" id="palabra-usuario" placeholder="Escribe aquí...">
+                <button type="button">¡Enviar!</button>
+            </div>
+
+            <div id="resultado">
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-final" class="oculto">
+    <div id="caja-modal">
+        <h2 id="titulo-final">¡Partida Terminada!</h2>
+        <p id="mensaje-ganador"></p>
+        <button id="btn-reiniciar">Jugar de nuevo</button>
+    </div>
+</div>
+
+    <script src="funct.js"></script>
+</body>
+
+</html>

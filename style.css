@@ -1,0 +1,452 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding-top: 70px;
+    min-height: 100vh;
+    font-family: "DynaPuff", system-ui;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: hidden;
+
+}
+
+body::before {
+    content: ""; /* Obligatorio para que exista la capa */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('mar-oceano-agua.jpeg');
+    background-size: cover;
+    background-position: center;
+    /* El efecto mágico */
+    filter: blur(8px); /* Ajusta el número para más o menos desenfoque */
+    z-index: -1; /* Lo manda detrás de todas tus cajas */
+    transform: scale(1.1); 
+}
+.oculto {
+    display: none !important;
+}
+#Juego-completo {
+    display: none;
+}
+/*-----------------Pantalla bienvenida-----------------*/
+#Pantalla-Inicio {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(17, 52, 141, 0.999), rgba(3, 133, 138, 0.999)); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5000; /* Por encima de todo, incluso del modal */
+    cursor: pointer;
+    transition: opacity 0.5s ease; /* Para que desaparezca suavemente */
+}
+
+.titulo-animado {
+    font-size: 80px;
+    color: white;
+    text-shadow: 4px 4px 10px rgba(0,0,0,0.3);
+    animation: flotar 3s ease-in-out infinite; /* Efecto de flotación */
+}
+
+.instruccion-inicio {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 20px;
+    margin-top: 20px;
+    animation: parpadear 1.5s infinite; /* Efecto de parpadeo */
+}
+
+/* Fundamento de animaciones: Keyframes */
+@keyframes flotar {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes parpadear {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+/*----------AQUI VA LA PERSONALIZACIÓN DEL LOBBY----------*/
+#Lobby {
+    display: flex; /* Flex suele ser más predecible para centrado vertical/horizontal simple */
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    min-height: 80vh; /* Le da altura para que se centre respecto al alto de la pantalla */
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#InputB {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    margin: 0 auto 1px auto;
+    padding: .4%;
+    text-align: center; /* Centra el bloque de contenido exactamente */
+    align-items: center;
+    gap: 15px;               /* Controla la separación solo aquí */
+    width: 100%;             /* Asegura que el contenedor use todo el ancho del Lobby */
+    margin-top: 20px;
+}
+/* IMPORTANTE: Quita márgenes por defecto que el navegador pone a los inputs */
+#InputB input, #InputB button {
+    margin: 0; 
+}
+#instruccion-lobby {
+    font-size: 40px;
+    background: linear-gradient(45deg, #173f85, #199bdc, #00cbf9);
+    margin: 0 auto 35px auto; /* Centra horizontalmente y da espacio abajo */
+    border-radius: 15px;
+    padding: 15px;
+    color: rgb(242, 242, 242);
+    text-align: center;      /* Asegura el texto centrado dentro del bloque azul */
+}
+
+#input-jugadores {
+    border-radius: 11px;
+    border: none;
+    width: 80%; 
+    height: 40px;
+    margin: 0;        /* CAMBIO: Eliminamos cualquier margen */
+    outline: none;   
+    font-family: "DynaPuff", system-ui;
+    font-size: 25px;
+}
+
+#registrar {
+    cursor: pointer;
+    border: none;
+    background-color: #173f85;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    margin: 0;        /* CAMBIO: Eliminamos el margen de 5px */
+    padding: 10px; 
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+    height: 40px;
+}
+#lista-nombres{
+    background: linear-gradient(45deg, #173f85, #199bdc, #00cbf9);
+    width: 200px;
+    border-radius: 15px;
+    color: white;
+    padding:10px;
+    margin: 15px;
+    font-size: 20px;
+    }
+#terminar-registro{
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(4, 53, 117, 0.8);
+    color:white;
+    font-size: 15px;
+    padding: 10px;
+}
+
+/*----------AQUI VA LA PERSONALIZACIÓN DEL JUEGO----------*/
+#Caja-sup{
+    width: auto;
+    max-width: calc(100vw - 300px);
+    background-color: rgba(255, 255, 255, 0.5);
+    justify-content: center;
+    margin: 0 auto 1px auto;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+#Barra-superior{
+    display: flex;
+    background: linear-gradient(45deg, #173f85, #199bdc, #00cbf9); /* En ángulo */    
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    justify-content: left;
+    padding: .15%;
+    z-index: 1000;
+    margin: auto;
+
+}
+#Barra-superior Button{
+    border-radius: 10px;
+    margin-left: 10px;
+    justify-content: center;
+    background-color: rgba(15, 44, 81, 0.001);
+    color : white;
+    border: none;
+    padding-left: 8px;
+    padding-right: 8px;
+    cursor:pointer;
+    transition: background-color 0.3s ease;
+}
+#Barra-superior button:hover{
+    background-color: rgb(9, 121, 178);
+    color :aliceblue;
+}
+
+#juego {
+    width: 90vw;        /* Usamos vw (ancho de pantalla) para ser exactos */
+    max-width: 90vw;    /* Prohibido crecer más de esto */
+    margin: 10px auto;  
+    background: linear-gradient(45deg, #173f85, #199bdc, #00cbf9);   
+    border-radius: 15px;
+    overflow-x: hidden; /* ¡Clave! Bloquea la expansión lateral del azul */
+    overflow-y: auto;   /* Permite scroll hacia abajo si el contenido crece */
+}
+#Turno{
+    display: flex;
+    margin: 15px;
+    align-items: center;
+    justify-content: center;
+    color:#173f85;
+    font-size: 40px;
+
+}
+#info-juego{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 20px;
+    margin: 0 auto 1px auto;
+    padding: .4%;
+    text-align: center;
+    font-size: 30px;
+    width: 100%;
+    height: 50px;
+    
+}
+#Tematica{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0px;
+    border-radius: 10px;
+    margin-bottom: 1px;
+    padding: 1px;
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+    width: 100%;
+    height: 70px;
+    margin: 0 auto;
+}
+#Tem{
+    color:#173f85;
+}
+#palabra1{
+    display: flex;
+    justify-content: left;
+    font-size: 30px;
+    height: 60px;
+    margin-left: 20px;
+    color: rgba(255, 255, 255, 0.87);
+}
+#palabra2{
+    
+    display: flex;
+    justify-content: left;
+    font-size: 30px;
+    height: 60px;
+    margin-left: 20px;
+    color: rgba(255, 255, 255, 0.87);
+}
+#Palabras {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;   
+    overflow-x: auto;    
+    gap: 5px;
+    width: 100%;         /* Que ocupe todo el ancho interno disponible */
+    max-width: 100%;     /* Pero ni un píxel más */
+    padding: 10px;       
+    margin-top: 20px;    
+    scroll-behavior: smooth;
+}
+#Palabras1{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;   
+    overflow-x: auto;    
+    gap: 5px;
+    width: 100%;        
+    padding: 10px;       
+    margin-top: 20px;    
+    scroll-behavior: smooth;
+}
+#conteo1{
+    margin-left: 15px;
+    color:#173f85;
+
+}
+#conteo2{
+    margin-left: 15px;
+    color:#173f85;
+}
+
+#Palabras::-webkit-scrollbar {
+    height: 8px; /* Altura porque es horizontal */
+}
+
+/* El fondo de la barra */
+#Palabras::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+#Palabras::-webkit-scrollbar-thumb {
+    background: rgba(32, 87, 158, 0.8); 
+    border-radius: 10px;
+}
+/*PALABRAS DEL JUGADOR 2*/
+#Palabras1::-webkit-scrollbar {
+    height: 8px; 
+}
+
+#Palabras1::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+
+#Palabras1::-webkit-scrollbar-thumb {
+    background: rgba(32, 87, 158, 0.8);
+    border-radius: 10px;
+}
+.palabra-descubierta {
+    background-color: white;
+    color: #1a3a5f;
+    padding: 3px 3px;
+    border-radius: 10px;
+    font-family: "DynaPuff", system-ui;
+    font-size: 35px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    animation: aparecer 0.3s ease-out; /* Para que no aparezcan de golpe */
+    flex-shrink: 0; 
+    white-space: nowrap;
+    display: flex;          
+    justify-content: center; /* Centra la letra horizontalmente */
+    align-items: center;     /* Centra la letra verticalmente */
+    width: 50px;            
+    height: 50px;
+    
+    
+    
+}
+#pantalla-juego{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    margin: 0 auto 1px auto;
+    padding: .4%;
+    text-align: center;
+    font-size: 30px;
+    width: 100%;
+    height: 80px;
+    gap: 5px;
+    margin-top: 120px;
+    color:rgba(255, 255, 255, 0.895);
+    
+}
+#pantalla-juego input{
+    border-radius: 5px;
+    border: none;
+    width: 50%; /* Le da más presencia al lugar donde escriben */
+    height: 35px;
+    margin-right: 10px; /* Despega el input del botón */
+    outline: none;   
+    font-family: "DynaPuff", system-ui;
+    font-size: 25px;
+
+}
+
+#pantalla-juego button{
+    cursor: pointer;
+    border: none;
+    background-color: rgba(15, 44, 81, 0.8);
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    padding: 10px 25px; /* Hace el botón más grande y fácil de presionar */
+    font-size: 20px;
+    color: white;
+    
+}
+#pantalla-juego button:hover{
+    background-color: rgb(5, 131, 173);
+    color :aliceblue;
+}
+/*-------------------------Fin del Juego--------------------------------*/
+#modal-final {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000; /* Asegura que esté por encima de todo */
+}
+
+#caja-modal {
+    background: linear-gradient(45deg, #208a9d, #306e9e, #0e3798);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
+    font-family: "DynaPuff", system-ui;
+}
+
+#caja-modal h2 {
+    color: #ffffff;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+#caja-modal p {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+#caja-modal button{
+    cursor: pointer;
+    border: none;
+    background-color: rgba(15, 44, 81, 0.8);
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    padding: 10px 25px; /* Hace el botón más grande y fácil de presionar */
+    font-size: 20px;
+    color: white;
+}
+#caja-modal button:hover{
+    background-color: rgb(11, 88, 146);
+    color :aliceblue;
+}
+
+
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: scale(0.5) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
